@@ -1,0 +1,16 @@
+  {{#each this}}
+  <li class="gallery__item">
+    <div class="gallery__thumb">
+      <img src="{{flag}}" alt="Флаг {{name}} " width="320">
+    </div>
+    <h2>{{name}}</h2>
+    <p><b>Capital: {{capital}}</b> </p>
+    <p><b>Population:</b> {{population}} </p>
+    <p><b>Languages:</b></p>
+    <ul> 
+      {{#each languages}}
+        <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </li>
+  {{/each}}
