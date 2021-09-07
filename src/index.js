@@ -6,18 +6,15 @@ import countryCard from './templates/countryinfo.hbs';
 import countryList from './templates/countrylist.hbs';
 import debounce from 'lodash.debounce';
 import { alert } from '@pnotify/core';
-
-
+import '@pnotify/core/dist/BrightTheme.css';
+import fetchCountry from './fetchCountries';
   
 function onSearch (e){
     e.preventDefault();
   const input = e.target;
 
-   function fetchCountry(input){
-     return fetch(`https://restcountries.eu/rest/v2/name/${input}`)
-       .then(response => {
-           return response.json();
-       })
+   const valueSearch = input => {
+    fetchCountry(input)
         .then(country => {
            if(country.length === 1){
              return refs.countryListRef.innerHTML = countryCard(country);
@@ -35,7 +32,7 @@ function onSearch (e){
         })
         .catch(error => {console.log(error)});
    }
-    fetchCountry(input.value);
+    valueSearch(input.value);
 }
 
 refs.inputRef.addEventListener('input', debounce(onSearch, 500));
